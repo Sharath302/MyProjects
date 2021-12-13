@@ -1,7 +1,0 @@
-# This a sample program which is written in python
-
-language = "Python"
-
-print("I like to code in " +language)
-
-
