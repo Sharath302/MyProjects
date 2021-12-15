@@ -16,8 +16,12 @@ jobs:
         fetch-depth: 0
 
     - name: Python Semantic Release
-      uses: marvinpinto/action-automatic-releases@latest
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-#         repository_username: __token__
-#         repository_password: ${{ secrets.PYPI_TOKEN }}
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          LICENSE.txt
+          *.jar
