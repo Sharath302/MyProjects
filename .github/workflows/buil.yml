@@ -8,8 +8,7 @@ on:
 
 jobs:
   test:
-    strategy:
-      runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-latest"
 
     steps:
     - uses: actions/checkout@v2
