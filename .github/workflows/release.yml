@@ -1,27 +1,23 @@
-name: "pre-release"
+name: Semantic Release
 
 on:
   push:
     branches:
-      - "master"
+      - master
 
 jobs:
-  pre-release:
-    name: "Pre Release"
-    runs-on: "ubuntu-latest"
+  release:
+    runs-on: ubuntu-latest
+    concurrency: release
 
     steps:
-      # ...
-      - name: "Build & test"
-        run: |
-          echo "done!"
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            LICENSE.txt
-            *.jar
+    - name: Python Semantic Release
+      uses: relekang/python-semantic-release@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository_username: __token__
+        repository_password: ${{ secrets.PYPI_TOKEN }}
