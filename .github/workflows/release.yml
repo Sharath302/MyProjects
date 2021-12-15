@@ -1,4 +1,4 @@
-name: "pre-release"
+name: pre-release
 
 on:
   push:
@@ -11,15 +11,11 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      # ...
-      - name: "Build & test"
-        run: |
-          echo "done!"
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      # ...        
+      - uses: actions/checkout@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          fetch-depth: 0
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
           title: "Development Build"
           files: |
